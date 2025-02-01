@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./src/styles/output.css" rel="stylesheet">
+</head>
+
+<body class="bg-[#131019] flex items-center justify-center h-screen text-white">
+    <div class="bg-charcoal p-6 rounded-lg shadow-lg w-[400px]">
+        <div class="flex justify-between items-center">
+            <h1 class="text-xl font-bold mb-4 text-white">On-chain Swap</h1>
+            <div class="m-progress-loader">
+                <div class="m-progress-loader--fill"></div>
+                <div class="m-progress-loader--mask"></div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-center gap-3">
+            <!-- From Currency Section -->
+            <div class="">
+                <label class="block text-sm mb-2 text-dusty-lavender" for="from-currency">From</label>
+                <div id="from-currency"
+                    class="rounded-lg w-[179px] bg-shadowed-lilac h-16 text-ghost-white my-boxshadow p-4 flex items-center justify-between cursor-pointer"
+                    onclick="openModal('from')">
+                    <span>Select Currency</span>
+                </div>
+
+            </div>
+
+            <!-- To Currency Section -->
+            <div class="">
+                <label class="block text-sm mb-2 text-dusty-lavender" for="to-currency">To</label>
+                <div id="to-currency"
+                    class="rounded-lg w-[179px] bg-shadowed-lilac h-16 text-ghost-white my-boxshadow p-4 flex items-center justify-between cursor-pointer"
+                    onclick="openModal('to')">
+                    <span>Select Currency</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="flex flex-col justify-center items-center">
+            <!-- Amount Input -->
+            <div class="mb-4 w-full">
+                <label class="block text-sm font-medium mb-2" for="amount">Amount</label>
+                <input type="number" id="amount" class="bg-dark-space w-full p-4 h-[70px] rounded text-white"
+                    placeholder="Enter amount" min="0">
+            </div>
+
+            <!-- Swap Button -->
+            <div class="flex justify-center my-4 absolute">
+                <button id="swap-currencies" class="bg-shadowed-lilac p-2 rounded-full hover:bg-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7l4-4m0 0l4 4m-4-4v18" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Converted Amount -->
+            <div class="mb-4 w-full">
+                <label class="block text-sm font-medium mb-2">Converted Amount</label>
+                <div id="converted-amount" class="bg-dark-space w-full p-4 h-[70px] rounded text-white">0</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Currency Selection -->
+    <div id="currency-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center text-black">
+        <div class="bg-white p-6 rounded-lg w-96">
+            <h2 class="text-xl font-bold mb-4">Select Currency</h2>
+            <input type="text" id="search-currency" class="w-full p-2 border rounded mb-4"
+                placeholder="Search currency...">
+            <div id="currency-list" class="max-h-60 overflow-y-auto">
+                <!-- Currency options will be dynamically added here -->
+            </div>
+            <button onclick="closeModal()"
+                class="w-full bg-gray-500 text-white p-2 rounded mt-4 hover:bg-gray-600">Close</button>
+        </div>
+    </div>
+
+    <script src="./src/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@theme {
+    --color-midnight: #121212;
+    --color-deep-blue: #0000ee;
+    --color-mystic-purple: #7138eb;
+    --color-dusty-lavender: #7f7a93;
+    --color-soft-lilac: #aaa4c2;
+    --color-charcoal: #15121c;
+    --color-ghost-white: #f4f4f6;
+    --color-ocean-blue: #1976d2;
+    --color-pure-white: #ffffff;
+    --color-dark-space: #1f1c2a;
+    --color-deep-ocean: #204e80;
+    --color-shadowed-lilac: #2b283c;
+    --color-twilight: #3a3650;
+    --color-dusk: #4e4968;
+}
+
+.my-boxshadow {
+    box-shadow: (255, 255, 255, 0.05) 0px 3px 0px 0px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes fill {
+    0% {
+        opacity: 0;
+    }
+
+    50%,
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes mask {
+    0% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.m-progress-loader {
+    background: #7f7a93;
+    border-radius: 50%;
+    font-size: 40px;
+    /* تغییر اندازه فونت به 40 پیکسل */
+    height: 1em;
+    /* ارتفاع برابر با 1em (40px) */
+    margin: 30px;
+    overflow: hidden;
+    position: relative;
+    width: 1em;
+    /* عرض برابر با 1em (40px) */
+
+    &::before,
+    &::after {
+        background: #f4f4f6;
+        content: " ";
+        display: block;
+        height: 1em;
+        /* ارتفاع برابر با 1em (40px) */
+        position: absolute;
+        width: 0.5em;
+        /* عرض برابر با 0.5em (20px) */
+    }
+
+    &::before {
+        animation: spin 10s linear infinite;
+        border-radius: 999px 0 0 999px;
+        transform-origin: 0.5em 0.5em;
+        /* تغییر مبدا transform */
+    }
+
+    &::after {
+        animation: fill 10s steps(1, end) infinite;
+        border-radius: 0 999px 999px 0;
+        opacity: 0;
+        right: 0;
+        top: 0;
+    }
+
+    &.is-done {
+
+        &::before,
+        &::after {
+            animation: none;
+            opacity: 1;
+        }
+
+        .m-progress-loader--mask {
+            animation: none;
+            background: #f3f5f6;
+            border-radius: 0;
+            height: 0.25em;
+            /* ارتفاع برابر با 0.25em (10px) */
+            left: 50%;
+            top: 50%;
+            transform-origin: center;
+            transform: translate(-50%, -75%) rotate(-45deg);
+            width: 0.5em;
+            /* عرض برابر با 0.5em (20px) */
+            z-index: 4;
+
+            &::before,
+            &::after {
+                background: red;
+                border-radius: 1em;
+                bottom: 0;
+                content: " ";
+                display: block;
+                left: 0;
+                position: absolute;
+            }
+
+            &::before {
+                height: 100%;
+                width: 0.09em;
+                /* عرض برابر با 0.09em (3.6px) */
+            }
+
+            &::after {
+                height: 0.09em;
+                /* ارتفاع برابر با 0.09em (3.6px) */
+                width: 100%;
+            }
+        }
+    }
+}
+
+.m-progress-loader--fill {
+    background: #15121c;
+    border-radius: 50%;
+    height: 0.9em;
+    /* ارتفاع برابر با 0.9em (36px) */
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 0.9em;
+    /* عرض برابر با 0.9em (36px) */
+    z-index: 3;
+}
+
+.m-progress-loader--mask {
+    animation: mask 10s steps(1, end) infinite;
+    background: inherit;
+    border-radius: 999px 0 0 999px;
+    height: 1em;
+    /* ارتفاع برابر با 1em (40px) */
+    position: absolute;
+    width: 0.5em;
+    /* عرض برابر با 0.5em (20px) */
+}
